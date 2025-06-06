@@ -7,8 +7,12 @@
   <meta name="description" content="Die Druckerei Max Götz GmbH in Nürnberg bietet hochwertige Drucklösungen – seit über 90 Jahren.">
   <meta name="keywords" content="Druckerei, Nürnberg, UV, Offsetdruck, Digitaldruck, Siebdruck, b2b, Max Götz, Graphische Kunstanstalt">
   <meta name="author" content="Druckerei Max Götz GmbH">
-<link rel="icon" href="icon.png" type="image/x-icon">
+  <link rel="icon" href="icon.png" type="image/x-icon">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #f9f9f9;
@@ -17,36 +21,63 @@
       text-align: center;
       color: #333;
     }
+
     header {
       background-color: #fff;
       padding: 20px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .logo {
-      max-width: 400px;
+      width: 100%;
+      max-width: 600px;
       height: auto;
     }
+
     h1 {
-      font-size: 3rem;
-      margin: 40px 0 20px;
+      font-size: 2.5rem;
+      margin: 30px 20px 10px;
       font-weight: bold;
     }
+
     p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin: 20px auto;
-      max-width: 600px;
+      max-width: 90%;
     }
+
     .contact {
       margin-top: 40px;
       background-color: #eee;
-      padding: 30px;
+      padding: 30px 20px;
       font-size: 1rem;
     }
+
     .contact pre {
       text-align: left;
       max-width: 600px;
       margin: auto;
       white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .contact {
+        font-size: 0.95rem;
+        padding: 20px 10px;
+      }
+
+      .logo {
+        max-width: 280px;
+      }
     }
   </style>
 </head>
