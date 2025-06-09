@@ -18,14 +18,21 @@
       background-color: #f9f9f9;
       margin: 0;
       padding: 0;
-      text-align: center;
       color: #333;
     }
 
-    header {
-      background-color: #fff;
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
       padding: 20px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      padding: 20px 0;
     }
 
     .logo {
@@ -34,20 +41,29 @@
       height: auto;
     }
 
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
     h1 {
       font-size: 2.5rem;
-      margin: 30px 20px 10px;
+      margin-bottom: 10px;
       font-weight: bold;
     }
 
     p {
       font-size: 1.1rem;
-      margin: 20px auto;
       max-width: 90%;
+      margin: 0 auto;
     }
 
     .contact {
-      margin-top: 40px;
+      width: 100%;
       background-color: #eee;
       padding: 30px 20px;
       font-size: 1rem;
@@ -82,16 +98,19 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="Logo%20freigestellt.png" alt="Druckerei Max Götz Logo" class="logo">
-  </header>
+  <div class="wrapper">
+    <header>
+      <img src="Logo%20freigestellt.png" alt="Druckerei Max Götz Logo" class="logo">
+    </header>
 
-  <h1>WORK IN PROGRESS</h1>
-  <p>Wir arbeiten derzeit daran, den Service auf unserer Website zu verbessern.<br>Vielen Dank für Ihre Geduld!</p>
+    <div class="main-content">
+      <h1>WORK IN PROGRESS</h1>
+      <p>Wir arbeiten derzeit daran, den Service auf unserer Website zu verbessern.<br>Vielen Dank für Ihre Geduld!</p>
+    </div>
 
-  <div class="contact">
-    <h2>Impressum & Kontakt</h2>
-    <pre>
+    <div class="contact">
+      <h2>Impressum & Kontakt</h2>
+      <pre>
 Druckerei Max Götz GmbH
 Graphische Kunstanstalt
 Laufamholzstraße 124
@@ -103,7 +122,8 @@ E-Mail: info@mg-druck.de
 Geschäftsführer: Robert Knorr
 Handelsregistereintrag: Nürnberg HR B 10 801
 Umsatzsteuer-ID Nr.: DE 133 511 325
-    </pre>
+      </pre>
+    </div>
   </div>
 </body>
 </html>
