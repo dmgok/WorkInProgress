@@ -15,13 +15,25 @@
 
     body {
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      background-color: white;
       margin: 0;
       padding: 0;
       color: #333;
     }
 
+    #bgCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     .wrapper {
+      position: relative;
+      z-index: 1;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -98,6 +110,8 @@
   </style>
 </head>
 <body>
+  <canvas id="bgCanvas"></canvas>
+
   <div class="wrapper">
     <header>
       <img src="Logo%20freigestellt.png" alt="Druckerei Max Götz Logo" class="logo">
@@ -125,5 +139,75 @@ Umsatzsteuer-ID Nr.: DE 133 511 325
       </pre>
     </div>
   </div>
+
+  <script>
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let points = [];
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const POINT_COUNT = 70;
+    const MAX_DISTANCE = 120;
+
+    function initPoints() {
+      points = Array.from({ length: POINT_COUNT }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8
+      }));
+    }
+
+    function drawPoints() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < POINT_COUNT; i++) {
+        const p = points[i];
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = '#aa0000';
+        ctx.fill();
+
+        for (let j = i + 1; j < POINT_COUNT; j++) {
+          const q = points[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MAX_DISTANCE) {
+            ctx.strokeStyle = `rgba(170, 0, 0, ${1 - dist / MAX_DISTANCE})`;
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function updatePoints() {
+      for (const p of points) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+      }
+    }
+
+    function animate() {
+      updatePoints();
+      drawPoints();
+      requestAnimationFrame(animate);
+    }
+
+    initPoints();
+    animate();
+  </script>
 </body>
 </html>
